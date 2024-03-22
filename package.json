@@ -1,0 +1,87 @@
+{
+  "name": "quaset",
+  "version": "1.0.0",
+  "description": "Loads content of found javascript and json files in given directory into a single structured object",
+  "author": "DayneSmith",
+  "main": "dist/js-dir-into-json.js",
+  "module": "dist/js-dir-into-json.esm.js",
+  "scripts": {
+    "build": "rollup -c",
+    "build:live": "nodemon -w src -w test --exec npm run build",
+    "lint": "eslint --ext .js --ignore-path .gitignore src/",
+    "test": "ava --serial --verbose",
+    "release": "standard-version -a"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EmelieHilll/quaset.git"
+  },
+  "keywords": [
+    "deep",
+    "consequatur",
+    "recursively",
+    "qui",
+    "cum",
+    "directory",
+    "folder",
+    "et",
+    "pattern"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EmelieHilll/quaset.git/issues"
+  },
+  "devDependencies": {
+    "@ava/babel": "^1.0.1",
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "ava": "^3.9.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.4.0",
+    "esm": "^3.2.25",
+    "nodemon": "^2.0.4",
+    "rollup": "^2.19.0",
+    "standard-version": "^8.0.0"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.test.js",
+      "src/**/*.unit.js",
+      "!test/fixtures"
+    ],
+    "require": [
+      "esm"
+    ],
+    "babel": true,
+    "snapshotDir": "test/snapshots"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "parser": "babel-eslint",
+    "env": {
+      "es6": true,
+      "node": true,
+      "commonjs": true
+    },
+    "globals": {
+      "BigInt": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "ignorePatterns": [
+      "*.unit.js"
+    ]
+  },
+  "standard-version": {
+    "scripts": {
+      "prerelease": "npm run lint && npm run build",
+      "precommit": "npm run --silent build > /dev/null 2>&1 && git add dist/ -f"
+    }
+  },
+  "dependencies": {
+    "deep-list-dir": "^1.3.0",
+    "deepmerge": "^4.2.2",
+    "lodash": "^4.17.15"
+  }
+}
